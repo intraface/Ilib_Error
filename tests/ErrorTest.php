@@ -1,5 +1,4 @@
 <?php
-require_once('../../tests.common.php');
 require_once 'PHPUnit/Framework.php';
 require_once '../src/Ilib/Error.php';
 
