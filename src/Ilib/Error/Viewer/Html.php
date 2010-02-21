@@ -29,21 +29,24 @@ class Ilib_Error_Viewer_Html {
      * @return string
      */
     public function view($translation) {
-        if (is_object($translation)) {
-            $e = '<ul class="formerrors">';
+        $e = '<ul class="formerrors">';
+        if(is_array($translation)) {
+            foreach ($this->error->getMessage() AS $error) {
+                $e .= '<li>' . call_user_func($translation, $error) . '</li>';
+            }
+        }
+        elseif (is_object($translation)) {
             foreach ($this->error->getMessage() AS $error) {
                 $e .= '<li>' . $translation->get($error) . '</li>';
             }
-            $e .= '</ul>';
-            return $e;
         } else {
-            $e = '<ul class="formerrors">';
             foreach ($this->error->getMessage() AS $error) {
                 $e .= '<li>' . $error . '</li>';
             }
-            $e .= '</ul>';
-            return $e;
         }
+        
+        $e .= '</ul>';
+        return $e;
     }
 
 }
