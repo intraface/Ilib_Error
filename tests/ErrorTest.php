@@ -1,30 +1,37 @@
 <?php
-require_once 'PHPUnit/Framework.php';
-require_once '../src/Ilib/Error.php';
+require_once dirname(__FILE__) . '/../src/Ilib/Error.php';
 
 class ErrorTest extends PHPUnit_Framework_TestCase
 {
+    protected $error;
+    
+    function setUp() 
+    {
+        $this->error = new Ilib_Error;
+    }
+
     function testConstruction()
     {
-        $error = new Ilib_Error;
-        $this->assertEquals('Ilib_Error', get_class($error));
+        $this->assertEquals('Ilib_Error', get_class($this->error));
     }
     
-    function testSetError() {
-        $error = new Ilib_Error;
-        
-        $error->set('first error');
-        $this->assertEquals(1, $error->count());
+    function testSetError() 
+    {
+        $this->error->set('first error');
+        $this->assertEquals(1, $this->error->count());
     }
     
-    function testView() {
-        
-        $error = new Ilib_Error;
-        
-        $error->set('first error');
-        
-        $this->assertEquals('<ul class="formerrors"><li>first error</li></ul>', $error->view());
+    function testView() 
+    {
+        $this->error->set('first error');
+        $this->assertEquals('<ul class="formerrors"><li>first error</li></ul>', $this->error->view());
         
     }
+
+    function tearDown()
+    {
+        unset($this->error);
+    }
+    
 }
-?>
+
