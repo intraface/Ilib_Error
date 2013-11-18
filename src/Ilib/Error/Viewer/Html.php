@@ -14,7 +14,8 @@ class Ilib_Error_Viewer_Html {
      * Ved at lave en reference til $error burde den kunne samle
      * alle ændringer sammen.
      */
-    public function __construct($error) {
+    public function __construct($error) 
+    {
         if (!is_object($error)) {
             die('ErrorHtmlViewer kræver Errorobjekt');
         }
@@ -28,14 +29,14 @@ class Ilib_Error_Viewer_Html {
      *
      * @return string
      */
-    public function view($translation) {
+    public function view($translation) 
+    {
         $e = '<ul class="formerrors">';
-        if(is_array($translation)) {
+        if (is_array($translation)) {
             foreach ($this->error->getMessage() AS $error) {
                 $e .= '<li>' . call_user_func($translation, $error) . '</li>';
             }
-        }
-        elseif (is_object($translation)) {
+        } elseif (is_object($translation)) {
             foreach ($this->error->getMessage() AS $error) {
                 $e .= '<li>' . $translation->get($error) . '</li>';
             }
@@ -48,6 +49,4 @@ class Ilib_Error_Viewer_Html {
         $e .= '</ul>';
         return $e;
     }
-
 }
-?>
