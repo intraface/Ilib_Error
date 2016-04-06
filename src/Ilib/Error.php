@@ -37,7 +37,7 @@ class Ilib_Error
      */
     public function set($msg)
     {
-        if(!empty($msg)) {
+        if (!empty($msg)) {
             $this->message[] = $msg;
         } else {
             $this->message[] = 'Udefinderet fejlbesked!';
@@ -53,7 +53,7 @@ class Ilib_Error
      */
     public function merge($error_array)
     {
-        if(is_array($error_array)) {
+        if (is_array($error_array)) {
             $this->message = array_merge($this->message, $error_array);
         }
     }
@@ -65,7 +65,7 @@ class Ilib_Error
      */
     public function isError()
     {
-        if($this->count() > 0) {
+        if ($this->count() > 0) {
             return true;
         } else {
             return false;
